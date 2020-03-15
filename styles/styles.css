@@ -1,0 +1,15 @@
+input,
+button,
+textarea {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  background-color: #e7e3da;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  margin: 10px 0;
+}
