@@ -253,20 +253,37 @@ function countWord(elemTextArea) {
   let txt = elemTextArea.value.toLowerCase();
   txt = txt.replace(/\./g, ""); //заменяю точки
   const arrWord = txt.split(/\s|,\s/g); //split " " | ", "
-  // console.log(arrWord);
+  //console.log(arrWord);
 
+  //подсчет------------------------
   const mountWord = arrWord.reduce((obj, word) => {
     if (!obj[word]) {
       obj[word] = 0;
     }
     obj[word]++;
     return obj;
-  }, []);
+  }, {});
 
-  console.log(mountWord);
-  addToList(mountWord);
+  //console.table(mountWord);
+  //сортировка----------------------
+  let sortable = [];
+  for (let word in mountWord) {
+    sortable.push([word, mountWord[word]]);
+  }
+  // console.log("check1", sortable);
+  sortable.sort((a, b) => {
+    return b[1] - a[1];
+  });
+  // console.log("check2", sortable);
+  let objSorted = {};
+  sortable.forEach(function(item) {
+    objSorted[item[0]] = item[1];
+  });
+  console.log("check3", objSorted);
+  //addToList(mountWord);
+  addToList(objSorted);
 }
-
+//-----------------------------------
 function addToList(value) {
   const checkbox = document.getElementById("checkbox");
   console.log(checkbox.checked);
